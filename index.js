@@ -5,6 +5,10 @@ const exphbs = require('express-handlebars')
 const app = express()
 const PORT = process.env.PORT || 3000
 
+const homeRoutes = require('./routes/home')
+const addRoutes = require('./routes/add')
+const coursesRoutes = require('./routes/courses')
+
 //настройка handlebasr
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -16,14 +20,9 @@ app.set('views', 'views')
 //------------------
 
 app.use(express.static('public'))
-
-app.get('/', (req, res) => {
-    res.render('index')
-})
-
-app.get('/about', (req, res) => {
-    res.render('about')
-})
+app.use('/',homeRoutes)
+app.use('/add',addRoutes)
+app.use('/courses',coursesRoutes)
 
 
 app.listen(PORT, () => {
