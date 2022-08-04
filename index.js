@@ -3,7 +3,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const homeRoutes = require('./routes/home')
-const cardRoutes = require('./routes/card')
+const cartRoutes = require('./routes/cart')
 const addRoutes = require('./routes/add')
 const coursesRoutes = require('./routes/courses')
 const User = require('./models/user')
@@ -40,7 +40,7 @@ app.use(express.urlencoded({extended: true}))
 app.use('/', homeRoutes)
 app.use('/add', addRoutes)
 app.use('/courses', coursesRoutes)
-app.use('/card', cardRoutes)
+app.use('/cart', cartRoutes)
 
 const PORT = process.env.PORT || 3000
 
@@ -54,7 +54,7 @@ async function start() {
       const user = new User({
         email: 'test@test.com',
         name: 'test',
-        card: {item: []}
+        cart: {item: []}
       }) 
       await user.save()
     }
