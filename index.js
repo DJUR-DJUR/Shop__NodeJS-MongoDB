@@ -4,6 +4,7 @@ const csrf = require('csurf')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
 const helmet = require('helmet')
+const compression = require('compression')
 const exphbs = require('express-handlebars')
 const session = require('express-session')
 const MongoStore = require('connect-mongodb-session')(session)
@@ -54,7 +55,7 @@ app.use(csrf())
 app.use(flash())
 app.use(varMiddleware)
 app.use(userMiddleware)
-
+app.use(compression())
 app.use(helmet({
   contentSecurityPolicy: {
       directives: {
